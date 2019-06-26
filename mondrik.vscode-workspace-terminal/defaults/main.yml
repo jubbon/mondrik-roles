@@ -1,0 +1,13 @@
+---
+
+terminal_directory: "{{ workspace_vscode_directory }}/terminals/{{ uid }}"
+
+title: "{{ uid }}"
+description: ""
+focus: "true"
+
+# История команд
+history: []
+
+# Установка виртуального окружения Python в терминал
+python: None

@@ -1,0 +1,6 @@
+---
+  - name: Генерация history-файла для терминала {{ uid }}
+    template:
+      src: history.j2
+      dest: "{{ terminal_directory }}/history"
+      mode: "0755"

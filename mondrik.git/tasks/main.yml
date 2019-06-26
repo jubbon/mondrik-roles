@@ -1,0 +1,13 @@
+---
+  - name: Проверка наличия каталога "{{ destination }}"
+    file:
+      path: "{{ destination }}"
+      state: directory
+      mode: "0755"
+
+  - name: "Обновление репозитория {{ project }}"
+    git:
+      repo: "https://github.com/{{ project }}"
+      dest: "{{ destination }}"
+      version: "{{ version | default('HEAD')}}"
+      force: "{{ force }}"

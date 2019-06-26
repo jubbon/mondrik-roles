@@ -1,0 +1,21 @@
+---
+  - name: Проверка наличия каталога "{{ terminal_directory }}"
+    file:
+      path: "{{ terminal_directory }}"
+      state: directory
+      mode: '0755'
+
+  - include: init.yml
+
+  - include: history.yml
+    when: history
+
+  - include: environments/python/main.yml
+    when: python
+
+  - name: Сохраняются параметры терминала {{ uid }}
+    set_fact:
+      workspace_vscode_terminals: "{{ workspace_vscode_terminals|default([]) + [{'uid': uid, 'name': title, 'description': description, 'focus': focus, 'command': ' source ' + terminal_directory + '/init'}]}}"
+    changed_when: yes
+    notify: Генерация файла 'terminals.json'
+

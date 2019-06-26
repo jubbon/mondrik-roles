@@ -1,0 +1,14 @@
+{
+  "autorun": false,
+  "terminals": [
+{% for terminal in workspace_vscode_terminals %}
+    {
+      "name": "{{ terminal.name }}",
+      "description": "{{ terminal.description }}",
+      "focus": "{{ terminal.focus }}",
+      "command": "{{ terminal.command }}"
+    }
+{%- if not loop.last %},{% endif -%}
+{% endfor %}
+  ]
+}

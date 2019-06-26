@@ -1,0 +1,6 @@
+---
+
+python_version: 3.7
+anaconda_version: latest
+
+install_dir: "/opt/anaconda/anaconda-python-{{ python_version }}"

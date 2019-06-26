@@ -1,0 +1,24 @@
+---
+
+git: {}
+python: {}
+
+settings: []
+
+
+# settings:
+#   - key: python.pythonPath
+#     value: ./devenv/python/.user/pyenv/bin/python
+#   - key: python.linting.enabled
+#     value: "true"
+#   - key: python.linting.flake8Enabled
+#     value: "true"
+#   - key: python.linting.flake8Args
+#     value: '["--max-line-length=120",]'
+#   - key: python.linting.pylintEnabled
+#     value: "false"
+#   - key: "python.formatting.provider"
+#     value: "yapf"
+
+#   - key: git.ignoreLimitWarning
+#     value: "true"

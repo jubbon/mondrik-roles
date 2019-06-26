@@ -1,0 +1,29 @@
+---
+  - set_fact:
+      settings: "{{ settings + ['\"python.pythonPath\": \"{{ workspace_directory }}/python\"'] }}"
+    when: python
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.linting.enabled\": true'] }}"
+    when: python.linting
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.linting.flake8Enabled\": true'] }}"
+    when: python.linting.flake8
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.formatting.provider\": \"{{ python.formatting }}\"'] }}"
+    when: python.formatting
+
+  - set_fact:
+      settings: "{{ settings + ['\"git.ignoreLimitWarning\": \"{{ git.ignoreLimitWarning | default(\"false\")}}\"'] }}"
+    when: git
+
+  # - set_fact:
+  #     settings: "{{ settings + "'test': 'test1'" }}"
+
+  - name: Генерация файла 'settings.json'
+    template:
+      src: settings.json.j2
+      dest: "{{ workspace_vscode_directory }}/settings.json"
+      mode: "0755"

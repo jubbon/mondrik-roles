@@ -1,0 +1,6 @@
+---
+  - name: Генерация файла 'terminals.json'
+    template:
+      src: terminals.json.j2
+      dest: "{{ workspace_vscode_directory }}/terminals.json"
+      mode: "0755"
