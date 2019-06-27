@@ -1,0 +1,9 @@
+---
+  - name: Синхронизация репозиториев из GitHub
+    include_role:
+      name: mondrik.git
+    vars:
+      origin: "{{ origin }}"
+      project: "{{ item }}"
+      destination: "{{ dir }}/{{ item }}"
+    with_items: "{{ projects }}"
