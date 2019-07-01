@@ -5,15 +5,15 @@
 
   - set_fact:
       settings: "{{ settings + ['\"python.linting.enabled\": true'] }}"
-    when: python.linting
+    when: python and python.linting
 
   - set_fact:
       settings: "{{ settings + ['\"python.linting.flake8Enabled\": true'] }}"
-    when: python.linting.flake8
+    when: python and python.linting and python.linting.flake8
 
   - set_fact:
       settings: "{{ settings + ['\"python.formatting.provider\": \"{{ python.formatting }}\"'] }}"
-    when: python.formatting
+    when: python and python.formatting
 
   - set_fact:
       settings: "{{ settings + ['\"git.ignoreLimitWarning\": \"{{ git.ignoreLimitWarning | default(\"false\")}}\"'] }}"
