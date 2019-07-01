@@ -14,11 +14,14 @@
       src: requirements-pip.j2
       dest: "{{ terminal_directory }}/requirements-pip"
       mode: "0644"
+    when: "'pip' in python.packages"
 
   - name: Обновление пакетов Python через pip
     command: "{{ terminal_directory }}/python/bin/pip install -r {{ terminal_directory }}/requirements-pip"
     register: result_install_packages_from_pip
+    when: "'pip' in python.packages"
 
   - name: Debug
     debug:
       var: result_install_packages_from_pip
+    when: "'pip' in python.packages"
