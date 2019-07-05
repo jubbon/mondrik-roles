@@ -1,0 +1,16 @@
+---
+  - name: Создание каталога для виртуального окружения Python
+    file:
+      path: "{{ python_environment_directory }}"
+      state: directory
+      mode: 0755
+
+  - name: Создание виртуального окружения Python с использованием conda
+    command: "{{ python.origin }}/bin/conda create --quiet --prefix {{ python_environment_directory }} --yes --copy --no-default-packages python=={{ python.version }}"
+    register: result_install_python_from_conda
+
+  - include: packages/conda.yml
+    when: "'conda' in python.packages"
+
+  - include: packages/pip.yml
+    when: "'pip' in python.packages"

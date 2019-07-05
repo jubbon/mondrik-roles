@@ -1,8 +1,6 @@
 ---
-  - include: env/conda.yml
-
   - name: Обновление pip
-    command: "{{ terminal_directory }}/python/bin/pip install --upgrade pip"
+    command: "{{ python_environment_directory }}/bin/pip install --upgrade pip"
     register: result_update_pip
 
   - name: Debug
@@ -12,12 +10,11 @@
   - name: Генерация файла со списком устанавливаемых через pip пакетов
     template:
       src: requirements-pip.j2
-      dest: "{{ terminal_directory }}/requirements-pip"
+      dest: "{{ python_environment_directory }}/requirements-pip"
       mode: "0644"
-    when: "'pip' in python.packages"
 
   - name: Обновление пакетов Python через pip
-    command: "{{ terminal_directory }}/python/bin/pip install -r {{ terminal_directory }}/requirements-pip"
+    command: "{{ python_environment_directory }}/bin/pip install -r {{ python_environment_directory }}/requirements-pip"
     register: result_install_packages_from_pip
     when: "'pip' in python.packages"
 

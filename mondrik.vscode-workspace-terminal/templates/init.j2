@@ -2,6 +2,9 @@
 
 basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Activate Python environment
+source "{{ python.origin }}/bin/activate" $basedir/python
+
 export HISTFILE=$basedir/.user/history
 history -c
 

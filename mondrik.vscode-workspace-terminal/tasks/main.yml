@@ -10,8 +10,12 @@
   - include: history.yml
     when: history
 
-  - include: environments/python/main.yml
-    when: python
+  - name: Установка виртуального окружения Python версии {{ python.version }} в терминал {{ uid }}
+    include_role:
+      name: mondrik.python-env-conda
+    vars:
+      python_environment_directory: "{{ terminal_directory }}/python"
+      python: "{{ python }}"
 
   - name: Сохраняются параметры терминала {{ uid }}
     set_fact:
