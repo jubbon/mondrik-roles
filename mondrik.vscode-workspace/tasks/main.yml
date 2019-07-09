@@ -15,4 +15,7 @@
       dest: "{{ workspace_vscode_directory }}/{{ workspace_name }}.code-workspace"
       mode: "0755"
 
+  - include: python.yml
+    when: python
+
   - include: settings.yml

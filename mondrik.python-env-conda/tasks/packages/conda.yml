@@ -6,7 +6,7 @@
       mode: 0644
 
   - name: Обновление пакетов в виртуальном окружении Python с использованием conda
-    command: "{{ python.origin }}/bin/conda env update --file {{ python_environment_directory }}/conda-environment.yml --quiet --prefix {{ python_environment_directory }}"
+    command: "{{ python_environment_origin }}/bin/conda env update --file {{ python_environment_directory }}/conda-environment.yml --quiet --prefix {{ python_environment_directory }}"
     register: result_update_python_packages
 
   - name: Debug

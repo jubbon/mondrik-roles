@@ -16,9 +16,7 @@
   - name: Обновление пакетов Python через pip
     command: "{{ python_environment_directory }}/bin/pip install -r {{ python_environment_directory }}/requirements-pip"
     register: result_install_packages_from_pip
-    when: "'pip' in python.packages"
 
   - name: Debug
     debug:
       var: result_install_packages_from_pip
-    when: "'pip' in python.packages"

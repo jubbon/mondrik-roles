@@ -1,8 +1,8 @@
 channels:
-{% for channel in python.packages.conda.channels | default([]) %}
+{% for channel in python_environment_packages_conda.channels | default([]) %}
   - {{ channel }}
 {% endfor %}
 dependencies:
-{% for dependency in python.packages.conda.dependencies %}
+{% for dependency in python_environment_packages_conda.dependencies %}
   - {{ dependency }}
 {% endfor %}

@@ -1,0 +1,41 @@
+---
+  - set_fact:
+      settings: "{{ settings + ['\"python.pythonPath\": \"{{ workspace_vscode_directory }}/python\"'] }}"
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.linting.enabled\": true'] }}"
+    when: python.linting
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.linting.flake8Enabled\": true'] }}"
+    when: python.linting and python.linting.flake8
+
+  - set_fact:
+      python_additional_packages_pip: "{{ python_additional_packages_pip | default([]) + [ 'flake8', ] }}"
+    when: python.linting and python.linting.flake8
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.formatting.provider\": \"{{ python.formatting }}\"'] }}"
+    when: python.formatting
+
+  - set_fact:
+      python_additional_packages_pip: "{{ python_additional_packages_pip | default([]) + [ python.formatting ] }}"
+    when: python.formatting
+
+  - set_fact:
+      python_packages_pip: "{{ python.packages.pip | default([])"
+    when: python.packages is defined
+
+  - set_fact:
+      python_packages_conda: "{{ python.packages.conda | default([])"
+    when: python.packages is defined
+
+  - name: Установка виртуального окружения Python версии {{ python.version }}
+    include_role:
+      name: mondrik.python-env-conda
+    vars:
+      python_environment_directory: "{{ workspace_vscode_directory }}/python"
+      python_environment_version: "{{ python.version }}"
+      python_environment_origin: "{{ python.origin }}"
+      python_environment_packages_pip: "{{ python_packages_pip | default([])  + python_additional_packages_pip }}"
+      python_environment_packages_conda: "{{ python_packages_conda | default({}) }}"

@@ -15,7 +15,10 @@
       name: mondrik.python-env-conda
     vars:
       python_environment_directory: "{{ terminal_directory }}/python"
-      python: "{{ python }}"
+      python_environment_version: "{{ python.version }}"
+      python_environment_origin: "{{ python.origin }}"
+      python_environment_packages_pip: "{{ python.packages.pip | default([]) }}"
+      python_environment_packages_conda: "{{ python.packages.conda | default({}) }}"
 
   - name: Сохраняются параметры терминала {{ uid }}
     set_fact:
