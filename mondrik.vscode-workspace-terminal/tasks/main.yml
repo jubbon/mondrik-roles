@@ -19,6 +19,7 @@
       python_environment_origin: "{{ python.origin }}"
       python_environment_packages_pip: "{{ python.packages.pip | default([]) }}"
       python_environment_packages_conda: "{{ python.packages.conda | default({}) }}"
+    when: python
 
   - name: Сохраняются параметры терминала {{ uid }}
     set_fact:
