@@ -1,5 +1,5 @@
 ---
-  - name: Генерация init-файла для терминала {{ uid }}
+  - name: "Генерация init-файла для терминала {{ uid }}"
     template:
       src: init.j2
       dest: "{{ terminal_directory }}/init"

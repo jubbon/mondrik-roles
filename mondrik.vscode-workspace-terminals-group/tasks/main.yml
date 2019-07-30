@@ -1,0 +1,16 @@
+---
+  - include: python.yml
+    when: python
+
+  - name: "Настройка терминала {{ item.uid }}"
+    include_role:
+      name: mondrik.vscode-workspace-terminal
+    vars:
+      terminal_directory: "{{ terminals_group_directory }}/{{ item.uid }}"
+      uid: "{{ item.uid }}"
+      title: "{{ item.title }}"
+      description: "{{ item.description }}"
+      history: "{{ item.history }}"
+      env: "{{ item.env }}"
+      cwd: "{{ item.cwd }}"
+    with_items: "{{ terminals }}"

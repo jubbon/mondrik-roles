@@ -5,25 +5,16 @@
       state: directory
       mode: '0755'
 
+  - include: python.yml
+    when: python and not (python_environment_path is defined or python_environment_path)
+
   - include: init.yml
 
   - include: history.yml
     when: history
-
-  - name: Установка виртуального окружения Python версии {{ python.version }} в терминал {{ uid }}
-    include_role:
-      name: mondrik.python-env-conda
-    vars:
-      python_environment_directory: "{{ terminal_directory }}/python"
-      python_environment_version: "{{ python.version }}"
-      python_environment_origin: "{{ python.origin }}"
-      python_environment_packages_pip: "{{ python.packages.pip | default([]) }}"
-      python_environment_packages_conda: "{{ python.packages.conda | default({}) }}"
-    when: python
 
   - name: Сохраняются параметры терминала {{ uid }}
     set_fact:
       workspace_vscode_terminals: "{{ workspace_vscode_terminals|default([]) + [{'uid': uid, 'name': title, 'description': description, 'focus': focus, 'command': ' source ' + terminal_directory + '/init'}]}}"
     changed_when: yes
     notify: Генерация файла 'terminals.json'
-

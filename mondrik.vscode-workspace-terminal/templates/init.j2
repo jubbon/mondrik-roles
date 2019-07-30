@@ -4,7 +4,7 @@ basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 {% if python and 'origin' in python %}
 # Activate Python environment
-source "{{ python.origin }}/bin/activate" $basedir/python
+source "{{ python.origin }}/bin/activate" "{{ python_environment_path }}"
 {% endif %}
 
 export HISTFILE=$basedir/.user/history

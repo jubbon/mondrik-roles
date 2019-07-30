@@ -1,0 +1,14 @@
+---
+  - name: Задание пути к интерпретатору Python
+    set_fact:
+      python_environment_path: "{{ terminals_group_directory }}/python"
+
+  - name: Установка виртуального окружения Python версии {{ python.version }} для группы терминалов
+    include_role:
+      name: mondrik.python-env-conda
+    vars:
+      python_environment_directory: "{{ python_environment_path }}"
+      python_environment_version: "{{ python.version }}"
+      python_environment_origin: "{{ python.origin }}"
+      python_environment_packages_pip: "{{ python.packages.pip | default([]) }}"
+      python_environment_packages_conda: "{{ python.packages.conda | default({}) }}"

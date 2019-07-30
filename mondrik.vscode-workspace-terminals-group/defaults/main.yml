@@ -1,0 +1,6 @@
+---
+
+terminals_group_directory: "{{ workspace_vscode_directory }}/terminals/{{ uid }}"
+
+# Установка виртуального окружения Python для группы терминалов
+python: None
