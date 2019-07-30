@@ -14,12 +14,7 @@
       python_additional_packages_pip: "{{ python_additional_packages_pip | default([]) + [ 'flake8', ] }}"
     when: python.linting and python.linting.flake8
 
-  - set_fact:
-      settings: "{{ settings + ['\"python.formatting.provider\": \"{{ python.formatting }}\"'] }}"
-    when: python.formatting
-
-  - set_fact:
-      python_additional_packages_pip: "{{ python_additional_packages_pip | default([]) + [ python.formatting ] }}"
+  - include: python/formatting/main.yml
     when: python.formatting
 
   - set_fact:

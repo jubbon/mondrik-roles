@@ -1,0 +1,17 @@
+---
+  - set_fact:
+      python_additional_packages_pip: "{{ python_additional_packages_pip | default([]) + [ 'yapf' ] }}"
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.formatting.provider\": \"yapf\"'] }}"
+
+  - set_fact:
+      yapf_styles: "{{ yapf_styles | default({}) | combine( { 'based_on_style': '{{ python.formatting.yapf.style }}' } )}}"
+    when: "'style' in python.formatting.yapf"
+
+  - set_fact:
+      yapf_styles: "{{ yapf_styles | default({}) | combine( { 'indent_width': '{{ python.formatting.yapf.indent_width }}' } )}}"
+    when: "'indent_width' in python.formatting.yapf"
+
+  - set_fact:
+      settings: "{{ settings + ['\"python.formatting.yapfArgs\": [\"--style\", \"{{ yapf_styles|tojson }}\"]'] }}"

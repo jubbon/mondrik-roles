@@ -1,0 +1,3 @@
+---
+  - include: yapf.yml
+    when: "'yapf' in python.formatting"
