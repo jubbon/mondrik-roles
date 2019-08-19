@@ -19,3 +19,7 @@
     when: python
 
   - include: settings.yml
+
+  - name: Задается post-команда
+    set_fact:
+      mondrik_post_command: "code '{{ workspace_vscode_directory }}/{{ workspace_name }}.code-workspace'"
