@@ -11,4 +11,4 @@
 
   - name: Debug
     debug:
-      var: result_install_python_from_conda
+      var: result_update_python_packages
