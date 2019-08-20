@@ -7,7 +7,7 @@ basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "{{ python.origin }}/bin/activate" "{{ python_environment_path }}"
 {% endif %}
 
-export HISTFILE=$basedir/.user/history
+export HISTFILE=$basedir/.history
 history -c
 
 if [ -e "$HISTFILE" ]; then
