@@ -1,0 +1,5 @@
+---
+  - name: Задается posthook-команда
+    set_fact:
+      mondrik_post_command: "cd {{ cwd }} && {{ command }}"
+    # when: command
