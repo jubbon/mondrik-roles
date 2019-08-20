@@ -5,8 +5,7 @@
       state: directory
       mode: '0755'
 
-  - include: environment/python/main.yml
-    when: "python and python_environment_path is not defined"
+  - include: environment/main.yml
 
   - include: init.yml
 

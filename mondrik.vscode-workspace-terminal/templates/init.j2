@@ -7,6 +7,11 @@ basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "{{ python.origin }}/bin/activate" "{{ python_environment_path }}"
 {% endif %}
 
+{% if nodejs and 'origin' in nodejs %}
+# Activate Node.js environment
+source "{{ nodejs.origin }}/bin/activate" "{{ nodejs_environment_path }}"
+{% endif %}
+
 export HISTFILE=$basedir/.history
 history -c
 

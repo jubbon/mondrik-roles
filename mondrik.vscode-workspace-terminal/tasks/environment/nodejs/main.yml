@@ -1,0 +1,12 @@
+---
+  - name: "Установка виртуального окружения Node.js версии {{ nodejs.version }} в терминал {{ uid }}"
+    include_role:
+      name: mondrik.conda-env-nodejs
+    vars:
+      nodejs_environment_directory: "{{ terminal_directory }}/nodejs"
+      nodejs_environment_version: "{{ nodejs.version }}"
+      nodejs_environment_origin: "{{ nodejs.origin }}"
+
+  - name: Задание пути к интерпретатору Node.js
+    set_fact:
+      nodejs_environment_path: "{{ terminal_directory }}/nodejs"

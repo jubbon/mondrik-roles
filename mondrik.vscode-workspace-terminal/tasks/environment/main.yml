@@ -1,0 +1,6 @@
+---
+  - include: python/main.yml
+    when: "python and python_environment_path is not defined"
+
+  - include: nodejs/main.yml
+    when: "nodejs and nodejs_environment_path is not defined"

@@ -1,0 +1,10 @@
+---
+  - name: Создание каталога для виртуального окружения Node.js
+    file:
+      path: "{{ nodejs_environment_directory }}"
+      state: directory
+      mode: 0755
+
+  - name: Создание виртуального окружения Node.js с использованием conda
+    command: "{{ nodejs_environment_origin }}/bin/conda create --quiet --prefix {{ nodejs_environment_directory }} --yes --copy --no-default-packages nodejs=={{ nodejs_environment_version }}"
+    register: result_install_nodejs_from_conda
