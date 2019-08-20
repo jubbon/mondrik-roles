@@ -6,7 +6,7 @@
       mode: '0755'
 
   - include: python.yml
-    when: python and not (python_environment_path is defined or python_environment_path)
+    when: "python and python_environment_path is not defined"
 
   - include: init.yml
 

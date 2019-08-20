@@ -16,4 +16,4 @@ env: {}
 cwd: "."
 
 # Установка виртуального окружения Python в терминал
-python: None
+python: False
