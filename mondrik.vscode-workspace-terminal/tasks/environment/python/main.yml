@@ -1,7 +1,7 @@
 ---
   - name: "Установка виртуального окружения Python версии {{ python.version }} в терминал {{ uid }}"
     include_role:
-      name: mondrik.python-env-conda
+      name: mondrik.conda-env-python
     vars:
       python_environment_directory: "{{ terminal_directory }}/python"
       python_environment_version: "{{ python.version }}"

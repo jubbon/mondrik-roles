@@ -27,7 +27,7 @@
 
   - name: Установка виртуального окружения Python версии {{ python.version }}
     include_role:
-      name: mondrik.python-env-conda
+      name: mondrik.conda-env-python
     vars:
       python_environment_directory: "{{ workspace_vscode_directory }}/python"
       python_environment_version: "{{ python.version }}"
