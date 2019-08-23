@@ -1,0 +1,7 @@
+{% if activate_executable %}
+source {{ activate_executable }} '{{ target_directory }}'
+{% endif %}
+
+{% for package in packages %}
+npm install -g {{ package }}
+{% endfor %}
