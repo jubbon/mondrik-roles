@@ -1,0 +1,10 @@
+---
+  - name: Генерация файла со списком устанавливаемых пакетов
+    template:
+      src: packages-conda.yml.j2
+      dest: "{{ target_directory }}/packages-conda.yml"
+      mode: 0644
+
+  - name: Обновление пакетов в виртуальном окружении Anaconda с использованием conda
+    command: "{{ conda_executable }} env update --file {{ target_directory }}/packages-conda.yml --quiet --prefix {{ target_directory }}"
+    register: result_update_packages_conda

@@ -1,0 +1,8 @@
+channels:
+{% for channel in packages.channels | default([]) %}
+  - {{ channel }}
+{% endfor %}
+dependencies:
+{% for dependency in packages.dependencies %}
+  - {{ dependency }}
+{% endfor %}
