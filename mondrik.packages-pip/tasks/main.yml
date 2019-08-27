@@ -1,0 +1,14 @@
+---
+  - name: Обновление pip
+    command: "{{ pip_executable }} install --upgrade pip"
+    register: result_update_pip
+
+  - name: Генерация файла со списком устанавливаемых через pip пакетов
+    template:
+      src: requirements-pip.j2
+      dest: "{{ target_directory }}/requirements-pip"
+      mode: "0644"
+
+  - name: Обновление пакетов Python через pip
+    command: "{{ pip_executable }} install -r {{ target_directory }}/requirements-pip"
+    register: result_install_packages_from_pip
