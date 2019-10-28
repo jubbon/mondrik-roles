@@ -6,6 +6,8 @@
       nodejs_environment_directory: "{{ terminal_directory }}/nodejs"
       nodejs_environment_version: "{{ nodejs.version }}"
       nodejs_environment_origin: "{{ nodejs.origin }}"
+      nodejs_environment_manager: "{{ nodejs.manager }}"
+      nodejs_environment_packages_npm: "{{ nodejs.packages | default([]) }}"
 
   - name: Задание пути к интерпретатору Node.js
     set_fact:

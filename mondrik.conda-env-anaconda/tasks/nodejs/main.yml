@@ -1,0 +1,23 @@
+---
+  # - name: Установка пакетов Node.js с помощью conda
+  #   include_role:
+  #     name: mondrik.packages_conda
+  #   vars:
+  #     conda_executable: "{{ anaconda_environment_origin }}/bin/conda"
+  #     target_directory: "{{ anaconda_environment_directory }}"
+  #     packages:
+
+  #     python_environment_directory: "{{ workspace_vscode_directory }}/python"
+  #     python_environment_version: "{{ python.version }}"
+  #     python_environment_origin: "{{ python.origin }}"
+  #     python_environment_packages_pip: "{{ python_packages_pip | default([])  + python_additional_packages_pip }}"
+  #     python_environment_packages_conda: "{{ python_packages_conda | default({}) }}"
+
+  - name: Установка пакетов Node.js с помощью npm
+    include_role:
+      name: mondrik.packages-npm
+    vars:
+      conda_executable: "{{ anaconda_environment_origin }}/bin/conda"
+      activate_executable: "{{ anaconda_environment_origin }}/bin/activate"
+      target_directory: "{{ anaconda_environment_directory }}/env"
+      packages: "{{ anaconda_environment_nodejs.packages }}"

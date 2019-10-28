@@ -1,4 +1,7 @@
 ---
+  - include: anaconda/main.yml
+    when: "anaconda"
+
   - include: python/main.yml
     when: "python and python_environment_path is not defined"
 

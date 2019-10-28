@@ -1,0 +1,8 @@
+---
+  - name: Установка пакетов Anaconda с помощью conda
+    include_role:
+      name: mondrik.packages-conda
+    vars:
+      conda_executable: "{{ anaconda_environment_origin }}/bin/conda"
+      target_directory: "{{ anaconda_environment_directory }}/env"
+      packages: "{{ anaconda_environment_conda }}"

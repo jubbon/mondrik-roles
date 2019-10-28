@@ -2,6 +2,11 @@
 
 basedir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+{% if anaconda and 'origin' in anaconda %}
+# Activate Anaconda environment
+source "{{ anaconda.origin }}/bin/activate" "{{ anaconda_environment_path }}"
+{% endif %}
+
 {% if python and 'origin' in python %}
 # Activate Python environment
 source "{{ python.origin }}/bin/activate" "{{ python_environment_path }}"

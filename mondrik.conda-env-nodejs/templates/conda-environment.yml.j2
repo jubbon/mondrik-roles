@@ -1,0 +1,8 @@
+channels:
+{% for channel in nodejs_environment_packages_conda.channels | default([]) %}
+  - {{ channel }}
+{% endfor %}
+dependencies:
+{% for dependency in nodejs_environment_packages_conda.dependencies %}
+  - {{ dependency }}
+{% endfor %}

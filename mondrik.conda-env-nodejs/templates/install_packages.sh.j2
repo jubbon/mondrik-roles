@@ -1,0 +1,9 @@
+source {{ nodejs_environment_origin }}/bin/activate '{{ nodejs_environment_directory }}'
+
+{% for package in nodejs_environment_packages_npm %}
+npm install -g {{ package }}
+{% endfor %}
+
+{% for package in nodejs_environment_packages_yarn %}
+yarn add {{ package }}
+{% endfor %}

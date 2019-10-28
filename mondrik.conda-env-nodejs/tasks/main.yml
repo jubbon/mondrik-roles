@@ -8,3 +8,17 @@
   - name: Создание виртуального окружения Node.js с использованием conda
     command: "{{ nodejs_environment_origin }}/bin/conda create --quiet --prefix {{ nodejs_environment_directory }} --yes --copy --no-default-packages nodejs=={{ nodejs_environment_version }}"
     register: result_install_nodejs_from_conda
+
+  - set_fact:
+      nodejs_environment_packages_conda: "{channels: ['conda-forge'], dependencies: ['{{ nodejs_environment_manager }}']}"
+    when: "nodejs_environment_manager is defined and nodejs_environment_manager !='npm'"
+
+  - name: Debug
+    debug:
+      var: nodejs_environment_packages_conda
+
+  - include: packages/conda.yml
+    when: nodejs_environment_packages_conda
+
+  - include: packages/main.yml
+    when: nodejs_environment_packages_npm or nodejs_environment_packages_yarn

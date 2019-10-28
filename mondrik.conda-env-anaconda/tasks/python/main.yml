@@ -1,0 +1,18 @@
+---
+  - name: Установка пакетов Python с помощью conda
+    include_role:
+      name: mondrik.packages-conda
+    vars:
+      conda_executable: "{{ anaconda_environment_origin }}/bin/conda"
+      target_directory: "{{ anaconda_environment_directory }}/env"
+      packages: "{{ anaconda_environment_python.packages.conda }}"
+    when: "'conda' in anaconda_environment_python.packages"
+
+  - name: Установка пакетов Python с помощью pip
+    include_role:
+      name: mondrik.packages-pip
+    vars:
+      pip_executable: "{{ anaconda_environment_directory }}/bin/pip"
+      target_directory: "{{ anaconda_environment_directory }}/env"
+      packages: "{{ anaconda_environment_python.packages.pip }}"
+    when: "'pip' in anaconda_environment_python.packages"

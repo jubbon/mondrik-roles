@@ -1,0 +1,13 @@
+---
+  - name: "Установка виртуального окружения Anaconda в терминал {{ terminal_directory }}"
+    include_role:
+      name: mondrik.conda-env-anaconda
+    vars:
+      anaconda_environment_directory: "{{ terminal_directory }}/anaconda"
+      anaconda_environment_origin: "{{ anaconda.origin }}"
+      anaconda_environment_python: "{{ anaconda.python | default({}) }}"
+      anaconda_environment_nodejs: "{{ anaconda.nodejs | default({}) }}"
+
+  - name: Задание пути к окружению Anaconda
+    set_fact:
+      anaconda_environment_path: "{{ terminal_directory }}/anaconda/env"

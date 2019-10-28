@@ -1,0 +1,14 @@
+---
+  - name: Генерация файла со списком устанавливаемых пакетов
+    template:
+      src: conda-environment.yml.j2
+      dest: "{{ nodejs_environment_directory }}/conda-environment.yml"
+      mode: 0644
+
+  - name: Обновление пакетов в виртуальном окружении Node.js с использованием conda
+    command: "{{ nodejs_environment_origin }}/bin/conda env update --file {{ nodejs_environment_directory }}/conda-environment.yml --quiet --prefix {{ nodejs_environment_directory }}"
+    register: result_update_nodejs_packages
+
+  - name: Debug
+    debug:
+      var: result_update_nodejs_packages

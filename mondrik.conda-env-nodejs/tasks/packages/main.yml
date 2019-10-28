@@ -1,0 +1,11 @@
+---
+  - name: Генерация файла со списком устанавливаемых пакетов
+    template:
+      src: install_packages.sh.j2
+      dest: "{{ nodejs_environment_directory }}/install_packages.sh"
+      mode: 0755
+
+  - name: Установка пакетов в виртуальном окружении Node.js
+    shell: "{{ nodejs_environment_directory }}/install_packages.sh"
+    args:
+      executable: /bin/bash

@@ -1,1 +1,4 @@
 ---
+  nodejs_environment_packages_conda: {}
+  nodejs_environment_packages_npm: []
+  nodejs_environment_packages_yarn: []

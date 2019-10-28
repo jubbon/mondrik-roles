@@ -1,0 +1,26 @@
+---
+  - name: Создание каталога для виртуального окружения Anaconda
+    file:
+      path: "{{ anaconda_environment_directory }}"
+      state: directory
+      mode: 0755
+
+  - name: Генерация файла со списком устанавливаемых пакетов
+    template:
+      src: conda-spec.yml.j2
+      dest: "{{ anaconda_environment_directory }}/conda-spec.yml"
+      mode: 0644
+
+  - name: Создание виртуального окружения Anaconda с использованием conda
+    command: "{{ anaconda_environment_origin }}/bin/conda create --quiet --prefix {{ anaconda_environment_directory }}/env --yes --copy --no-default-packages --file '{{ anaconda_environment_directory }}/conda-spec.yml'"
+    register: result_install_anaconda
+
+  - include: nodejs/main.yml
+    when: anaconda_environment_nodejs
+
+  - include: python/main.yml
+    when: anaconda_environment_python
+
+  - include: conda/main.yml
+    when: anaconda_environment_conda
+

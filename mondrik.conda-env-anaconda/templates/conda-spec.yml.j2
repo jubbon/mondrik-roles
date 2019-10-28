@@ -1,0 +1,6 @@
+{% if anaconda_environment_python %}
+python=={{ anaconda_environment_python.version }}
+{% endif %}
+{% if anaconda_environment_nodejs %}
+nodejs=={{ anaconda_environment_nodejs.version }}
+{% endif %}
